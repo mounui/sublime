@@ -8,7 +8,7 @@
 127.0.0.1 	45.55.41.223
 ```
 
-**使用方法**：打开sublime点击Help -> enter licenc，将以下注册码内容复制粘贴进去并激活
+**使用方法**：打开sublime点击Help -> enter licenc，将以下注册码内容复制粘贴进去并激活。激活之后避免主动更新软件，软件更新会导致之前的注册失效。可以添加配置`"update_check":false`关闭检查更新。
 
 ### Version 3.2.2 Build 3211
 
