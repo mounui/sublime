@@ -10,7 +10,7 @@
 
 **使用方法**：打开sublime点击Help -> enter licenc，将以下注册码内容复制粘贴进去并激活
 
-#### Version 3.2.2 Build 3211
+### Version 3.2.2 Build 3211
 
 更新时间：2020.5.9
 
