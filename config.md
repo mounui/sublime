@@ -27,9 +27,11 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 
 ### 常用插件
 
-#### Package Control
+###### Package Control
 
-#### ChineseLocalizations
+##### ChineseLocalizations
+
+##### **ChineseLo**
 
 #### SublimeLinter
 
