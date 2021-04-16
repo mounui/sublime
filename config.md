@@ -31,7 +31,7 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 
 ##### ChineseLocalizations
 
-##### **ChineseLo**
+**ChineseLo**
 
 #### SublimeLinter
 
