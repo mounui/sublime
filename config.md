@@ -15,6 +15,23 @@
 }
 ```
 
+## 快捷键设置
+
+```json
+[
+	// 系统快捷键 //
+	// 保存全部
+	{ "keys": ["ctrl+alt+s"], "command": "save_all" },
+	// Trailing​Spaces插件快捷键 //
+	// 删除行尾空格
+	{ "keys": ["ctrl+alt+t"], "command": "delete_trailing_spaces" },
+	// 切换空格高亮显示
+	{ "keys": ["ctrl+alt+d"], "command": "toggle_trailing_spaces" }
+]
+```
+
+
+
 ## 常用插件
 
 ### 插件控制台Package Control安装
@@ -83,7 +100,7 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 
 ##### Emmet
 
-> Emmet语法
+> 代码快速补全 Emmet语法
 
 ##### FileDiffs
 
@@ -91,133 +108,91 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 
 ##### HTML-CSS-JS Prettify
 
+> 代码格式化插件
+>
+> 它可以代替很多其他格式化插件，如TAG，CssComb和JSFormat
+
+##### jQuery
+
+> jQuery代码片段
+
+##### SublimeLinter
+
+> 行内语法检测插件
+>
+> - SublimeLinter-contrib-htmlhint -- 用于HTML的SublimeLinter插件，基于nodeJS下的htmlhint的插件
+>
+> - SublimeLinter-csslint -- 用于CSS的SublimeLinter插件，基于nodeJS下的csslint的插件
+>
+> - SublimeLinter-jshint -- 用于JS的SublimeLinter插件，基于nodeJS下的jshint的插件
+>
+> - SublimeLinter-php -- php语法检查
+
 ```json
+// SublimeLinter Settings - User
 {
-    // Simply using `node` without specifying a path sometimes doesn't work :(
-    // https://github.com/victorporof/Sublime-HTMLPrettify#oh-noez-command-not-found
-    // http://nodejs.org/#download
-    "node_path":
-    {
-        "windows": "C:/Program Files/nodejs/node.exe",
-        "linux": "/usr/bin/nodejs",
-        "osx": "/usr/local/bin/node"
+    "delay": 0.3,
+    // 语法检查模式 文件打开和保存时
+    "lint_mode": "load_save",
+    "paths": {
+        "linux": [],
+        "osx": [],
+        "windows": [
+            // 配置php路径使php语法检查起作用
+            // "C:\\wamp\\bin\\php\\php5.6.40",
+            // "C:\\wamp\\bin\\php\\php7.3.12",
+            "C:\\wamp\\bin\\php\\php7.4.9"
+        ]
     },
-
-    // Automatically format when a file is saved.
-    "format_on_save": false,
-
-    // Automatically format when a file is opened. (Sublime Text 3 only)
-    "format_on_open": false,
-
-    // Automatically format when a file is focused. (Sublime Text 3 only)
-    "format_on_focus": false,
-
-    // Automatically format when a file loses focus. (Sublime Text 3 only)
-    "format_on_focus_lost": false,
-
-    // Automatically format while a file is being edited. (Experimental / Sublime Text 3 only)
-    "format_while_editing": false,
-
-    // Only format the selection if there's one available.
-    "format_selection_only": true,
-
-    // Save to a temporary file before prettifying.
-    "save_to_temp_file_before_prettifying": true,
-
-    // Settings determining which files are allowed to be prettified.
-    // !!! All the keys below need to be included in your user settings for them to work. !!!
-    "global_file_rules":
-    {
-        // Be sure to include all of the `html`, `css`, `js` and `json` keys in your user settings
-        // if you want to be able to prettify the default files as well.
-        "html":
-        {
-            "allowed_file_extensions": ["htm", "html", "xhtml", "shtml", "xml", "svg", "vue"],
-            "allowed_file_syntaxes": ["html", "xml", "vue"],
-            "disallowed_file_patterns": []
-        },
-        // Be sure to include all of the `html`, `css`, `js` and `json` keys in your user settings
-        // if you want to be able to prettify the default files as well.
-        "css":
-        {
-            "allowed_file_extensions": ["css", "scss", "sass", "less"],
-            "allowed_file_syntaxes": ["css", "sass", "less"],
-            "disallowed_file_patterns": []
-        },
-        // Be sure to include all of the `html`, `css`, `js` and `json` keys in your user settings
-        // if you want to be able to prettify the default files as well.
-        "js":
-        {
-            "allowed_file_extensions": ["js", "jsx"],
-            "allowed_file_syntaxes": ["javascript", "ecma", "react", "babel"],
-            "disallowed_file_patterns": []
-        },
-        // Be sure to include all of the `html`, `css`, `js` and `json` keys in your user settings
-        // if you want to be able to prettify the default files as well.
-        "json":
-        {
-            "allowed_file_extensions": [
-                "json",
-                "babelrc",
-                "eslintrc",
-                "jshintrc",
-                "jsbeautifyrc",
-                "sublime-settings",
-                "sublime-keymap",
-                "sublime-commands",
-                "sublime-menu"
+    "linters": {
+        // htmlhint配置
+        "htmlhint": {
+            // 关闭语法检查
+            "disable": false,
+            // 自定义的配置文件
+            "args": [
+                // "--config",
+                // "D:\\mine\\htmlhint.conf"
             ],
-            "allowed_file_syntaxes": ["json"],
-            "disallowed_file_patterns": []
+            // 排除
+            "excludes": ["*.php"],
+            // 检查范围scope，使用Tools->Develper->Show Scope Name查看当前文档的scope
+            // 针对特定范围的文件检查，多个用,隔开。- 表示排除
+            "selector": "text.html.basic - source.php",
+        },
+        // csslint配置
+        "csslint": {
+            "disable": false,
+            "excludes": [],
+            "filter_errors": [],
+            // 忽略语法检查选项
+            "ignore": [
+                "unique-headings",
+                "qualified-headings",
+                "font-sizes",
+                "floats",
+                "box-model",
+                "box-sizing",
+                "compatible-vendor-prefixes",
+                "outline-none",
+                "ids",
+                "order-alphabetical",
+                "zero-units",
+                "universal-selector",
+                "import",
+                "gradients",
+                "fallback-colors",
+                "duplicate-properties"
+            ],
+        },
+        "php": {
+            "disable": false,
+            // "selector": "source.php,embedding.php,meta.embedded.block.php,meta.function.php,meta.block.php,meta.group.php,variable.other.php,punctuation.definition.variable.php",
         }
-    },
-
-    // Respect `.editorconfig` rules, overriding settings from `.jsbeautifyrc`.
-    // Note that `use_editor_syntax` and `use_editor_indentation` have precedence
-    // and will always override any other settings from any configuration file
-    // like `.jsbeautifyrc` and `.editorconfig`.
-    "respect_editorconfig_files": true,
-
-    // Use current syntax to determine file type, instead of the extension.
-    "use_editor_syntax": true,
-
-    // Use current identation settings to override the ones from `.jsbeautifyrc`.
-    "use_editor_indentation": false,
-
-    // Log the settings passed to the prettifier from `.jsbeautifyrc`.
-    "print_diagnostics": true
+    }
 }
 ```
 
+##### TrailingSpaces
 
-
-#### SublimeLinter
-
-#### SublimeLinter-contrib-htmlhint
-
-#### SublimeLinter-csslint
-
-#### SublimeLinter-jshint
-
-#### SublimeLinter-php
-
-#### TrailingSpaces
-
-#### jQuery
-
-keymap
-
-```json
-[
-	// 系统快捷键 //
-	// 保存全部
-	{ "keys": ["ctrl+alt+s"], "command": "save_all" },
-	// Trailing​Spaces插件快捷键 //
-	// 删除行尾空格
-	{ "keys": ["ctrl+alt+t"], "command": "delete_trailing_spaces" },
-	// 切换空格高亮显示
-	{ "keys": ["ctrl+alt+d"], "command": "toggle_trailing_spaces" }
-]
-
-```
-
+> 突出显示尾随空格，删除它们
